@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import RandomThoughtButton from './components/RandomThoughtButton';
 import Thought from './components/Thought';
 import Tag from './components/Tag';
+import Description from './components/Description';
 import axios from 'axios';
+
+// Styles
+import './App.scss';
 
 export default class App extends Component {
   constructor(props) {
@@ -10,8 +14,8 @@ export default class App extends Component {
 
     this.state = {
       thoughts: [],
-      isRandomThought: false,
       tags: [],
+      Image: null,
     };
   }
 
@@ -24,7 +28,7 @@ export default class App extends Component {
       .catch(err => console.log(err));
   }
 
-  handleClickOnRandomThoughtButton = () => {
+  handleClickOnRandomThoughtButton = async () => {
     axios
       .get('http://api.tronalddump.io/random/quote')
       .then(res => {
@@ -65,15 +69,17 @@ export default class App extends Component {
         handleClick={this.handleClickOnTag}
       />
     ));
+
     return (
-      <div>
+      <React.Fragment>
+        <Description />
         <RandomThoughtButton
           handleClick={this.handleClickOnRandomThoughtButton}
         />
-        <br></br>
+        <p>or, pick one of the topics</p>
         {tagList}
         {thoughtsList}
-      </div>
+      </React.Fragment>
     );
   }
 }
