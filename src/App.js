@@ -34,6 +34,23 @@ export default class App extends Component {
       .catch(err => console.log(err));
   };
 
+  handleClickOnTag = value => {
+    axios
+      .get(
+        `http://api.tronalddump.io/search/quote?tag=${encodeURIComponent(
+          value
+        )}`
+      )
+      .then(res => {
+        const thoughts = res.data._embedded.quotes.map(quote => {
+          const { quote_id: id, value: text } = quote;
+          return { id, text };
+        });
+
+        this.setState({ thoughts });
+      });
+  };
+
   render() {
     const { tags, thoughts } = this.state;
 
@@ -41,13 +58,17 @@ export default class App extends Component {
       <Thought key={thought.id} {...thought} />
     ));
 
-    const tagList = tags.map(tag => <Tag key={tag.value} value={tag.value} />);
+    const tagList = tags.map(tag => (
+      <Tag
+        key={tag.value}
+        value={tag.value}
+        handleClick={this.handleClickOnTag}
+      />
+    ));
     return (
       <div>
         <RandomThoughtButton
-          handleClickOnRandomThoughtButton={
-            this.handleClickOnRandomThoughtButton
-          }
+          handleClick={this.handleClickOnRandomThoughtButton}
         />
         <br></br>
         {tagList}
