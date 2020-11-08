@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import RandomThoughtButton from './components/RandomThoughtButton';
 import Thought from './components/Thought';
 import Tag from './components/Tag';
-import Description from './components/Description';
+import Description from './Description/Description';
 import axios from 'axios';
 
 // Styles
