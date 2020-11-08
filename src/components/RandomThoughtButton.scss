@@ -1,0 +1,12 @@
+@import '../config';
+
+.btn {
+  background: $primary-color;
+  color: #fff;
+  margin: 1rem auto;
+
+  &:hover,
+  &:focus {
+    background: darken($primary-color, 5);
+  }
+}

@@ -1,2 +1,27 @@
+@import './config';
+
 body {
+  font-family: 'Chakra Petch', sans-serif;
+  box-sizing: border-box;
+  line-height: 1.4;
+  font-size: 1rem;
+}
+
+main {
+  width: 90%;
+  max-width: 37.5rem;
+  margin: 3rem auto;
+  text-align: center;
+  background: $light-secondary-color;
+  color: $secondary-color;
+  padding: 2rem 3rem;
+  border-radius: 0.5rem;
+  border: 1px solid darken($light-secondary-color, 5);
+}
+
+button {
+  padding: 0.5rem 1rem;
+  outline-width: 0px;
+  border: unset;
+  cursor: pointer;
 }

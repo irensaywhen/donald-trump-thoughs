@@ -6,6 +6,7 @@ import Description from './components/Description';
 import axios from 'axios';
 
 // Styles
+import 'normalize.css';
 import './App.scss';
 
 export default class App extends Component {
@@ -71,7 +72,7 @@ export default class App extends Component {
     ));
 
     return (
-      <React.Fragment>
+      <main>
         <Description />
         <RandomThoughtButton
           handleClick={this.handleClickOnRandomThoughtButton}
@@ -79,7 +80,7 @@ export default class App extends Component {
         <p>or, pick one of the topics</p>
         {tagList}
         {thoughtsList}
-      </React.Fragment>
+      </main>
     );
   }
 }
