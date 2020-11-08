@@ -1,0 +1,14 @@
+@import '../config';
+
+.btn {
+  @include ease-out;
+  background: transparent;
+  text-decoration: underline;
+  margin: 0.25rem 0.125rem;
+
+  &:hover,
+  &:focus {
+    background: $primary-color;
+    color: #fff;
+  }
+}

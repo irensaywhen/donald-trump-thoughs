@@ -1,0 +1,13 @@
+@import '../config';
+
+.btn {
+  @include ease-out;
+  background: $secondary-color;
+  color: #fff;
+  margin: 1rem auto 0.5rem;
+
+  &:hover,
+  &:focus {
+    background: darken($secondary-color, 5);
+  }
+}

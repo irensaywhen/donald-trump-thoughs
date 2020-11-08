@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import RandomThoughtButton from './components/RandomThoughtButton';
-import Thought from './components/Thought';
-import Tag from './components/Tag';
+import RandomThoughtButton from './RandomThought/RandomThoughtButton';
+import Thought from './Thought/Thought';
+import Tag from './Tag/Tag';
 import Description from './Description/Description';
+import ViewMoreTopicsBtn from './ViewMoreTopicsBtn/ViewMoreTopicsBtn';
 import axios from 'axios';
 
 // Styles
@@ -16,7 +17,7 @@ export default class App extends Component {
     this.state = {
       thoughts: [],
       tags: [],
-      Image: null,
+      isTopicsShown: false,
     };
   }
 
@@ -56,6 +57,10 @@ export default class App extends Component {
       });
   };
 
+  handleClickOnViewMore = () => {
+    this.setState({ isTopicsShown: !this.state.isTopicsShown });
+  };
+
   render() {
     const { tags, thoughts } = this.state;
 
@@ -71,14 +76,29 @@ export default class App extends Component {
       />
     ));
 
+    const paragraphStyle = {
+      paddingBottom: '1rem',
+    };
+
+    const tagListStyle = this.state.isTopicsShown
+      ? { height: 'auto', overflowY: 'visible' }
+      : {
+          maxHeight: '2rem',
+          overflowY: 'hidden',
+        };
+
     return (
       <main>
         <Description />
         <RandomThoughtButton
           handleClick={this.handleClickOnRandomThoughtButton}
         />
-        <p>or, pick one of the topics</p>
-        {tagList}
+        <p style={paragraphStyle}>or, pick one of the topics below:</p>
+        <div style={tagListStyle}>{tagList}</div>
+        <ViewMoreTopicsBtn
+          isTopicsShown={this.state.isTopicsShown}
+          onClickHandler={this.handleClickOnViewMore}
+        />
         {thoughtsList}
       </main>
     );
