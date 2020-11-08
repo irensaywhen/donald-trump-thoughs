@@ -23,7 +23,7 @@ export default class App extends Component {
 
   componentDidMount() {
     axios
-      .get('http://api.tronalddump.io/tag')
+      .get('https://api.tronalddump.io/tag')
       .then(res => {
         this.setState({ tags: res.data._embedded.tag });
       })
@@ -32,7 +32,7 @@ export default class App extends Component {
 
   handleClickOnRandomThoughtButton = async () => {
     axios
-      .get('http://api.tronalddump.io/random/quote')
+      .get('https://api.tronalddump.io/random/quote')
       .then(res => {
         const { quote_id: id, value: text } = res.data;
         this.setState({ thoughts: [{ id, text }] });
@@ -43,7 +43,7 @@ export default class App extends Component {
   handleClickOnTag = value => {
     axios
       .get(
-        `http://api.tronalddump.io/search/quote?tag=${encodeURIComponent(
+        `https://api.tronalddump.io/search/quote?tag=${encodeURIComponent(
           value
         )}`
       )
