@@ -83,13 +83,16 @@ export default class App extends Component {
     const tagListStyle = this.state.isTopicsShown
       ? { height: 'auto', overflowY: 'visible' }
       : {
-          maxHeight: '2rem',
+          maxHeight: '2.5rem',
           overflowY: 'hidden',
         };
 
     return (
       <main>
         <Description />
+        <section className={thoughts.length > 0 ? 'thoughs' : null}>
+          {thoughtsList}
+        </section>
         <RandomThoughtButton
           handleClick={this.handleClickOnRandomThoughtButton}
         />
@@ -99,7 +102,6 @@ export default class App extends Component {
           isTopicsShown={this.state.isTopicsShown}
           onClickHandler={this.handleClickOnViewMore}
         />
-        {thoughtsList}
       </main>
     );
   }
